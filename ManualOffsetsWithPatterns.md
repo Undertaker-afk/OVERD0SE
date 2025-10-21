@@ -1,48 +1,47 @@
 ```text
 // ————————————————————————————————————————————————————————————————————————————
-// 1) Core engine pointers (signature scans in cs2-internal/core/interfaces.cpp)
+// 1) Core engine pointers (NOW USING HARDCODED OFFSETS - No more pattern scanning!)
 //    ---------------------------------------------------------------------------
-//    All of these are declared via CSigScan objects and initialized in
-//    H::Setup() by calling their .Scan() methods against client.dll or engine.dll.
+//    IMPORTANT: Pattern scanning has been REPLACED with hardcoded offsets
+//    from cs2-dumper for better performance and reliability.
 
-// File: cs2-internal/core/interfaces.cpp
-// URL:  https://github.com/Bloodysharp/OVERD0SE/blob/main/cs2-internal/core/interfaces.cpp
+// File: cs2-internal/core/Offsets.hpp (NEW)
+// File: cs2-internal/core/interfaces.cpp (MODIFIED)
+// Source: cs2-dumper/output/offsets.json
 
-// Location ~line 45: signature for SchemaSystem interface
-Pattern: "48 8D 0D ? ? ? ? 48 89 4D F8 E8 ? ? ? ? 48 8B D0"
-// Scans for: I::SchemaSystem (dumper: dwSchemaSystem)
+// ===== REPLACED PATTERN SCANS WITH HARDCODED OFFSETS =====
 
-// Location ~line 60: signature for GameEntitySystem
-Pattern: "48 8D 0D ? ? ? ? E8 ? ? ? ? 48 8D 05 ? ? ? ? 48 89 05 ? ? ? ?"
-// Scans for: I::EntityList or GameEntitySystem (dumper: dwEntityList)
+// OLD: Pattern: "48 8D 0D ? ? ? ? 48 89 4D F8 E8 ? ? ? ? 48 8B D0"
+// NEW: Offset::dwSchemaSystem (accessed via interface capture - no offset needed)
 
-// Location ~line 75: signature for GameRules
-Pattern: "48 8B 05 ? ? ? ? 48 8D 0D ? ? ? ? FF 50 ? 48 85 C0 74 ? 48 8B 08"
-// Scans for: I::GameRules (dumper: dwGameRules)
+// OLD: Pattern: "48 8D 0D ? ? ? ? E8 ? ? ? ? 48 8D 05 ? ? ? ? 48 89 05 ? ? ? ?"
+// NEW: Offsets::dwEntityList = 0x1D03BB0 (30410384)
 
-// Location ~line 90: signature for PlantedC4
-Pattern: "48 8B 05 ? ? ? ? 48 85 C0 74 ? 4C 8D 05"
-// Scans for: I::PlantedC4 (dumper: dwPlantedC4)
+// OLD: Pattern: "48 8B 05 ? ? ? ? 48 8D 0D ? ? ? ? FF 50 ? 48 85 C0 74 ? 48 8B 08"
+// NEW: Offsets::dwGameRules = 0x1E1C480 (31579008)
 
-// Location ~line 105: signature for InputSystem
-Pattern: "48 8B 05 ? ? ? ? 48 8B D9 8B 81"
-// Scans for: I::InputSystem (dumper: dwInputSystem)
+// OLD: Pattern: "48 8B 05 ? ? ? ? 48 85 C0 74 ? 4C 8D 05"
+// NEW: Offsets::dwPlantedC4 = 0x1E21878 (31601288)
 
-// Location ~line 120: signature for LocalPlayerController
-Pattern: "48 8D 05 ? ? ? ? 48 8B 01 FF 90 ? ? ? ? 33 D2"
-// Scans for: I::LocalPlayerController (dumper: dwLocalPlayerController)
+// OLD: Pattern: "48 8B 05 ? ? ? ? 48 8B D9 8B 81"
+// NEW: Offsets::dwInputSystem (in inputsystem.dll) = 0x45A20 (285216)
 
-// Location ~line 135: signature for GlobalVars
-Pattern: "48 8B 05 ? ? ? ? 48 85 C0 74 05 48 8B 08 B8"
-// Scans for: I::GlobalVars (dumper: dwGlobalVars)
+// OLD: Pattern: "48 8D 05 ? ? ? ? 48 8B 01 FF 90 ? ? ? ? 33 D2"
+// NEW: Offsets::dwLocalPlayerController = 0x1E0C448 (31499080)
 
-// Location ~line 150: signature for ViewMatrix
-Pattern: "48 83 EC 28 8B 05 ? ? ? ? 8B 0C 88"
-// Scans for: dwViewMatrix
+// OLD: Pattern: "48 8B 05 ? ? ? ? 48 85 C0 74 05 48 8B 08 B8"
+// NEW: Offsets::dwGlobalVars = 0x1BD0DD0 (29167184)
+// USAGE: GlobalVars = *reinterpret_cast<IGlobalVars**>(clientBase + Offsets::dwGlobalVars);
 
-// Location ~line 165: signature for ViewAngles
-Pattern: "4C 8D 05 ? ? ? ? 48 8D 15 ? ? ? ? 48 8D 0D ? ? ? ? E8"
-// Scans for: dwViewAngles
+// OLD: Pattern: "48 83 EC 28 8B 05 ? ? ? ? 8B 0C 88"
+// NEW: Offsets::dwViewMatrix = 0x1E1E520 (31582496)
+
+// OLD: Pattern: "4C 8D 05 ? ? ? ? 48 8D 15 ? ? ? ? 48 8D 0D ? ? ? ? E8"
+// NEW: Offsets::dwViewAngles = 0x1E28630 (31624880)
+
+// OLD: Pattern: "48 8B 0D ? ? ? ? 4C 8B C6 8B 10 E8"
+// NEW: Offsets::dwCSGOInput = 0x1E26080 (31623168)
+// USAGE: Input = *reinterpret_cast<CCSGOInput**>(clientBase + Offsets::dwCSGOInput);
 
 // ————————————————————————————————————————————————————————————————————————————
 // 2) SCHEMA_ADD_OFFSET entries in cs2-internal/sdk/entity.h

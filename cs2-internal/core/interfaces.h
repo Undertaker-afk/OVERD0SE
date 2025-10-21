@@ -4,6 +4,7 @@
 
 #include "../utilities/common.h"
 #include "../utilities/memory.h"
+#include "Offsets.hpp"
 
 #pragma region sdk_definitons
 #define GAME_RESOURCE_SERVICE_CLIENT CXOR("GameResourceServiceClientV00")

@@ -1,13 +1,15 @@
 ```text
 // ————————————————————————————————————————————————————————————————————————————
-// 1) Core engine pointers (from Fusion-CS2)
-//    These are normally grabbed via signature scans in
-//    cs2-internal/core/interfaces.cpp but can be hard-coded here:
+// 1) Core engine pointers (UPDATED - Now using hardcoded offsets from cs2-dumper)
+//    Location: cs2-internal/core/Offsets.hpp
+//    Source: cs2-dumper/output/offsets.json
 
-dwEntityList         = 0x19F2488   // dumper name: dwEntityList
-dwLocalPlayerPawn    = 0x1855CE8   // dumper name: dwLocalPlayerPawn
-dwViewMatrix         = 0x1A54550   // dumper name: dwViewMatrix
-dwViewAngles         = 0x1A5E650   // dumper name: dwViewAngles
+dwEntityList         = 0x1D03BB0   // 30410384 - dwEntityList
+dwLocalPlayerPawn    = 0x1BDB010   // 29211408 - dwLocalPlayerPawn  
+dwViewMatrix         = 0x1E1E520   // 31582496 - dwViewMatrix
+dwViewAngles         = 0x1E28630   // 31624880 - dwViewAngles
+dwCSGOInput          = 0x1E26080   // 31623168 - dwCSGOInput
+dwGlobalVars         = 0x1BD0DD0   // 29167184 - dwGlobalVars
 
 // ————————————————————————————————————————————————————————————————————————————
 // 2) SCHEMA_ADD_OFFSET entries in cs2-internal/sdk/entity.h
