@@ -192,13 +192,20 @@ bool I::Setup()
 	}
 
 	bSuccess &= (Device != nullptr && DeviceContext != nullptr);
-	Input = *reinterpret_cast<CCSGOInput**>(MEM::ResolveRelativeAddress(MEM::FindPattern(CLIENT_DLL, CXOR("48 8B 0D ? ? ? ? 4C 8B C6 8B 10 E8")), 0x3, 0x7));
+	// Using hardcoded offsets from cs2-dumper instead of pattern scanning
+	const void* hClientDll = MEM::GetModuleBaseHandle(CLIENT_DLL);
+	if (hClientDll == nullptr)
+		return false;
 	
+	Input = *reinterpret_cast<CCSGOInput**>(reinterpret_cast<std::uintptr_t>(hClientDll) + Offsets::dwCSGOInput);
+	bSuccess &= (Input != nullptr);
+	
+	GlobalVars = *reinterpret_cast<IGlobalVars**>(reinterpret_cast<std::uintptr_t>(hClientDll) + Offsets::dwGlobalVars);
+	bSuccess &= (GlobalVars != nullptr);
+	
+	// Note: MGameParticleManagerSystem still uses pattern scan as it's not in cs2-dumper offsets
 	MGameParticleManagerSystem = reinterpret_cast<CGameParticleManagerSystem*>(MEM::GetAbsoluteAddress(MEM::FindPattern(CLIENT_DLL, CXOR("49 63 81 ?? ?? ?? ?? 85 C0")), 0x3));
 	bSuccess &= (MGameParticleManagerSystem != nullptr);
-
-	GlobalVars = *reinterpret_cast<IGlobalVars**>(MEM::ResolveRelativeAddress(MEM::FindPattern(CLIENT_DLL, CXOR("48 8B 05 ?? ?? ?? ?? 44 8B B7 ?? ?? ?? ?? 8B 70 04 B8 ?? ?? ?? ??")), 0x3, 0x7));
-	bSuccess &= (GlobalVars != nullptr);
 
 	return bSuccess && SetupBaseSystems();
 }

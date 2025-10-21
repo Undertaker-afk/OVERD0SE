@@ -1,14 +1,14 @@
-| File | Pattern/Offset | Dumper Name (a2x/cs2-dumper) |
-| :--- | :--- | :--- |
-| `cs2-internal/core/interfaces.cpp` | `48 8D 0D ? ? ? ? 48 89 4D F8 E8 ? ? ? ? 48 8B D0` | `dwSchemaSystem` |
-| `cs2-internal/core/interfaces.cpp` | `48 8D 0D ? ? ? ? E8 ? ? ? ? 48 8D 05 ? ? ? ? 48 89 05 ? ? ? ?` | `dwGameEntitySystem` |
-| `cs2-internal/core/interfaces.cpp` | `48 8B 05 ? ? ? ? 48 8D 0D ? ? ? ? FF 50 ? 48 85 C0 74 ? 48 8B 08` | `dwGameRules` |
-| `cs2-internal/core/interfaces.cpp` | `48 8B 05 ? ? ? ? 48 85 C0 74 ? 4C 8D 05` | `dwPlantedC4` |
-| `cs2-internal/core/interfaces.cpp` | `48 8B 05 ? ? ? ? 48 8B D9 8B 81` | `dwInputSystem` |
-| `cs2-internal/core/interfaces.cpp` | `48 8D 05 ? ? ? ? 48 8B 01 FF 90 ? ? ? ? 33 D2` | `dwLocalPlayerController` |
-| `cs2-internal/core/interfaces.cpp` | `48 8B 05 ? ? ? ? 48 85 C0 74 05 48 8B 08 B8` | `dwGlobalVars` |
-| `cs2-internal/core/interfaces.cpp` | `48 83 EC 28 8B 05 ? ? ? ? 8B 0C 88` | `dwViewMatrix` |
-| `cs2-internal/core/interfaces.cpp` | `4C 8D 05 ? ? ? ? 48 8D 15 ? ? ? ? 48 8D 0D ? ? ? ? E8` | `dwViewAngles` |
+| File | Offset Type | Dumper Name (a2x/cs2-dumper) | Current Value (Decimal/Hex) |
+| :--- | :--- | :--- | :--- |
+| `cs2-internal/core/Offsets.hpp` | **HARDCODED** | `dwCSGOInput` | `31623168 / 0x1E26080` |
+| `cs2-internal/core/Offsets.hpp` | **HARDCODED** | `dwEntityList` | `30410384 / 0x1D03BB0` |
+| `cs2-internal/core/Offsets.hpp` | **HARDCODED** | `dwGameEntitySystem` | `33181664 / 0x1FA3660` |
+| `cs2-internal/core/Offsets.hpp` | **HARDCODED** | `dwGameRules` | `31579008 / 0x1E1C480` |
+| `cs2-internal/core/Offsets.hpp` | **HARDCODED** | `dwGlobalVars` | `29167184 / 0x1BD0DD0` |
+| `cs2-internal/core/Offsets.hpp` | **HARDCODED** | `dwLocalPlayerController` | `31499080 / 0x1E0C448` |
+| `cs2-internal/core/Offsets.hpp` | **HARDCODED** | `dwLocalPlayerPawn` | `29211408 / 0x1BDB010` |
+| `cs2-internal/core/Offsets.hpp` | **HARDCODED** | `dwViewMatrix` | `31582496 / 0x1E1E520` |
+| `cs2-internal/core/Offsets.hpp` | **HARDCODED** | `dwViewAngles` | `31624880 / 0x1E28630` |
 | `cs2-internal/core/interfaces.cpp` | `48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 20 48 8B D9 48 8B FA E8` | `fnGetFileWeaponInfoFromHandle` |
 | `cs2-internal/core/interfaces.cpp` | `40 53 48 83 EC 20 48 8B D9 E8 ? ? ? ? 48 85 C0 75 0C` | `fnGetPlayerPawn` |
 | `cs2-internal/core/interfaces.cpp` | `48 89 5C 24 ? 48 89 6C 24 ? 56 57 41 54 41 56 41 57 48 83 EC 30 4C 8B F1` | `fnSetDynamicAttributeValue` |
