@@ -1,6 +1,8 @@
-# CS2 Internal - Pattern Scan Reference
+# CS2 Internal - Core & Interface Pattern Scan Reference
 
-This document lists all pattern scans used in the cs2-internal project, organized by file location and linked to their corresponding offsets from cs2-dumper where applicable.
+This document catalogs the pattern scans currently used in the cs2-internal project's `core/` and `sdk/interfaces/` directories, organized by file location and linked to their corresponding offsets from cs2-dumper where applicable.
+
+> **Scope:** Only pattern scans that live in `cs2-internal/core` and `cs2-internal/sdk/interfaces` are covered here. Other modules (e.g. `sdk/entity.cpp`, `sdk/datatypes`, `features`, `utilities`) contain additional patterns that are outside this document's present scope and will be documented separately.
 
 ## Table of Contents
 - [core/interfaces.cpp](#coreinterfacescpp)
